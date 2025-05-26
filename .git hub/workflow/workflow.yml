@@ -24,7 +24,7 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Print Greeting
-        run: echo "Hello! A new commit was pushed to the main branch. Welcome!"
+        run: echo "Hi! A new commit was pushed to the main branch. Welcome!"
 
       # You can add more steps here if needed
       # - name: Another step
