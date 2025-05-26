@@ -1,10 +1,31 @@
-name: First Workflow
-on: workflow_dispatch
+# .github/workflows/greet-on-main-push.yml
+
+name: Greet on Main Push # Name of the workflow (visible in the Actions tab)
+
+# Controls when the workflow will run
+on:
+  push: # Trigger on push events
+    branches: # Only for pushes to specific branches
+      - main   # Or 'master' if that's your default branch name
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  first-job:
-    runs-on: ubuntu-latest
+  # This workflow contains a single job called "say-hello"
+  say-hello:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest # You can use other runners like windows-latest or macos-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - name: print greeting
-        run: echo "Hello World!"
-      - name: Print goodbye
-        run: echo "Done - bye!"
+      # (Optional but good practice) Checks-out your repository under $GITHUB_WORKSPACE,
+      # so your job can access it. Not strictly needed for just an echo, but useful for most workflows.
+      - name: Checkout code
+        uses: actions/checkout@v4 # Use version v4 or the latest stable version
+
+      # Runs a single command using the runners shell
+      - name: Print Greeting
+        run: echo "Hello! A new commit was pushed to the main branch. Welcome!"
+
+      # You can add more steps here if needed
+      # - name: Another step
+      #   run: echo "This is another step."
